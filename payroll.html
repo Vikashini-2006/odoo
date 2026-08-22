@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payroll — Dayflow HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="payroll" data-require-role="any">
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark"><i class="fa-solid fa-diagram-project"></i></span><span class="brand-name">Dayflow</span></div>
+    <div class="sidebar-user">
+      <div class="avatar-sm" data-user-initials>--</div>
+      <div><div class="u-name" data-user-name>—</div><div class="u-role" data-user-role>—</div></div>
+    </div>
+    <nav class="side-nav">
+      <div class="nav-label">Main</div>
+      <a href="employee-dashboard.html" id="navDashboardLink" class="side-link" data-nav="dashboard"><i class="fa-solid fa-grip"></i> Dashboard</a>
+      <a href="profile.html" class="side-link" data-nav="profile"><i class="fa-solid fa-user"></i> My Profile</a>
+      <a href="attendance.html" class="side-link" data-nav="attendance"><i class="fa-solid fa-calendar-check"></i> Attendance</a>
+      <a href="leave.html" class="side-link" data-nav="leave"><i class="fa-solid fa-plane-departure"></i> Leave</a>
+      <a href="payroll.html" class="side-link" data-nav="payroll"><i class="fa-solid fa-money-check-dollar"></i> Payroll</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="btn btn-ghost btn-block" data-logout style="color:#CFCDF0;justify-content:flex-start;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+        <div><div class="page-title">Payroll</div><div class="page-sub" data-today>—</div></div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-user"><div class="avatar-sm" data-user-initials>--</div></div>
+      </div>
+    </header>
+
+    <div class="content" id="payrollPage">
+      <div class="grid-cols-3">
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-indigo"><i class="fa-solid fa-sack-dollar"></i></div></div>
+          <div class="stat-value" id="payrollLatestNet">—</div>
+          <div class="stat-label">Latest Net Pay <span id="payrollLatestMonth"></span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-teal"><i class="fa-solid fa-coins"></i></div></div>
+          <div class="stat-value" id="payrollYtdGross">—</div>
+          <div class="stat-label">Gross Pay (last 4 months)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-amber"><i class="fa-solid fa-file-invoice"></i></div></div>
+          <div class="stat-value">Monthly</div>
+          <div class="stat-label">Payslip Cycle</div>
+        </div>
+      </div>
+
+      <div class="card mt-24">
+        <div class="card-title"><h3>Payroll Records</h3></div>
+        <div class="table-toolbar">
+          <div class="search-box" id="payrollSearchWrap" style="display:none;"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="payrollSearch" placeholder="Search by employee name..."></div>
+          <div class="filter-group">
+            <div id="payrollEmpFilterWrap" style="display:none;"><select id="payrollEmpFilter"></select></div>
+            <input type="month" id="payrollMonthFilter">
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead id="payrollTableHead"></thead>
+            <tbody id="payrollTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="payslipModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Payslip</h3><button class="modal-close" data-close-modal><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="modal-body">
+      <div class="flex justify-between items-center mb-0" style="margin-bottom:16px;">
+        <div>
+          <div style="font-weight:700;color:var(--ink);" id="payslipEmpName">—</div>
+          <div class="text-muted" style="font-size:.8rem;" id="payslipEmpMeta">—</div>
+        </div>
+        <span id="payslipStatus"></span>
+      </div>
+      <div class="text-muted" style="font-size:.8rem;margin-bottom:10px;">Pay period: <b id="payslipMonth" style="color:var(--ink);">—</b></div>
+      <div class="payslip-summary">
+        <div class="col">
+          <h4>Earnings</h4>
+          <div class="pay-line"><span>Basic Pay</span><span id="payslipBasic">—</span></div>
+          <div class="pay-line"><span>HRA</span><span id="payslipHra">—</span></div>
+          <div class="pay-line"><span>Allowances</span><span id="payslipAllowance">—</span></div>
+          <div class="pay-line total"><span>Gross Pay</span><span id="payslipGross">—</span></div>
+        </div>
+        <div class="col">
+          <h4>Deductions</h4>
+          <div class="pay-line"><span>Tax &amp; PF</span><span id="payslipDeduction">—</span></div>
+          <div class="pay-line total"><span>Net Pay</span><span id="payslipNet">—</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-primary" data-close-modal><i class="fa-solid fa-check"></i> Done</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="js/script.js"></script>
+</body>
+</html>
