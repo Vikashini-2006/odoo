@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — Dayflow HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="login-wrap">
+  <aside class="login-aside">
+    <div class="brand"><span class="brand-mark"><i class="fa-solid fa-diagram-project"></i></span> Dayflow</div>
+    <div class="login-quote">
+      <h2>Everything HR, without the spreadsheets.</h2>
+      <p>Attendance, leave and payroll — organized in one place for your whole team.</p>
+      <div class="login-checklist">
+        <div><i class="fa-solid fa-check"></i> One-click check-in &amp; check-out</div>
+        <div><i class="fa-solid fa-check"></i> Real-time leave approvals</div>
+        <div><i class="fa-solid fa-check"></i> Clear, itemized payslips</div>
+      </div>
+    </div>
+    <div class="login-foot">© 2026 Dayflow HRMS · Frontend demo</div>
+  </aside>
+
+  <main class="login-main">
+    <div class="login-card">
+      <h1>Welcome back</h1>
+      <p>Log in to your Dayflow workspace to continue.</p>
+
+      <div class="role-tabs">
+        <button type="button" class="active" data-role="employee"><i class="fa-solid fa-user"></i> Employee</button>
+        <button type="button" data-role="admin"><i class="fa-solid fa-user-tie"></i> HR Admin</button>
+      </div>
+
+      <div class="demo-hint">
+        <b>Demo mode</b>
+        Pick any account below — the password for every demo account is <strong>password123</strong>.
+      </div>
+
+      <div id="loginError" class="form-error"></div>
+
+      <form id="loginForm">
+        <div class="field no-icon">
+          <label for="demoUser">Demo account</label>
+          <select id="demoUser" required></select>
+        </div>
+        <div class="field">
+          <label for="loginEmail">Work email</label>
+          <div class="input-wrap">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="loginEmail" readonly>
+          </div>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Enter password123" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <label class="remember"><input type="checkbox" checked> Keep me signed in</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-right-to-bracket"></i> Log In</button>
+      </form>
+
+      <p style="text-align:center;margin-top:20px;font-size:.85rem;">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to homepage</a>
+      </p>
+    </div>
+  </main>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

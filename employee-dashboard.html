@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Dayflow HRMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="employee-dashboard" data-require-role="employee">
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark"><i class="fa-solid fa-diagram-project"></i></span><span class="brand-name">Dayflow</span></div>
+    <div class="sidebar-user">
+      <div class="avatar-sm" data-user-initials>--</div>
+      <div><div class="u-name" data-user-name>—</div><div class="u-role" data-user-role>—</div></div>
+    </div>
+    <nav class="side-nav">
+      <div class="nav-label">Main</div>
+      <a href="employee-dashboard.html" id="navDashboardLink" class="side-link" data-nav="dashboard"><i class="fa-solid fa-grip"></i> Dashboard</a>
+      <a href="profile.html" class="side-link" data-nav="profile"><i class="fa-solid fa-user"></i> My Profile</a>
+      <a href="attendance.html" class="side-link" data-nav="attendance"><i class="fa-solid fa-calendar-check"></i> Attendance</a>
+      <a href="leave.html" class="side-link" data-nav="leave"><i class="fa-solid fa-plane-departure"></i> Leave</a>
+      <a href="payroll.html" class="side-link" data-nav="payroll"><i class="fa-solid fa-money-check-dollar"></i> Payroll</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="btn btn-ghost btn-block" data-logout style="color:#CFCDF0;justify-content:flex-start;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+        <div><div class="page-title">Dashboard</div><div class="page-sub" data-today>—</div></div>
+      </div>
+      <div class="topbar-right">
+        <a href="attendance.html" class="btn btn-primary btn-sm hide-mobile"><i class="fa-solid fa-fingerprint"></i> Check In / Out</a>
+        <div class="topbar-user"><div class="avatar-sm" data-user-initials>--</div></div>
+      </div>
+    </header>
+
+    <div class="content" id="empDashboard">
+      <div class="content-header">
+        <div>
+          <h1>Welcome back, <span id="greetName">there</span> 👋</h1>
+          <p>Here's what's happening with your work today.</p>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-indigo"><i class="fa-solid fa-calendar-day"></i></div></div>
+          <div class="stat-value" id="statToday">—</div>
+          <div class="stat-label">Today's Status</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-teal"><i class="fa-solid fa-umbrella-beach"></i></div></div>
+          <div class="stat-value" id="statLeaveBalance">—</div>
+          <div class="stat-label">Leave Balance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-amber"><i class="fa-solid fa-chart-line"></i></div></div>
+          <div class="stat-value" id="statAttendancePct">—</div>
+          <div class="stat-label">Attendance This Month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-icon i-indigo"><i class="fa-solid fa-sack-dollar"></i></div></div>
+          <div class="stat-value" id="statNextPay">—</div>
+          <div class="stat-label">Latest Payslip <span id="statNextPaySub"></span></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title"><h3>Recent Attendance</h3><a href="attendance.html" class="link">View all</a></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Date</th><th>Check In</th><th>Check Out</th><th>Status</th></tr></thead>
+              <tbody id="recentAttendanceBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><h3>Recent Leave Requests</h3><a href="leave.html" class="link">View all</a></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Type</th><th>Dates</th><th>Status</th></tr></thead>
+              <tbody id="recentLeaveBody"></tbody>
+            </table>
+          </div>
+          <a href="leave.html" class="btn btn-outline btn-block mt-16"><i class="fa-solid fa-plus"></i> Apply for Leave</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="js/script.js"></script>
+</body>
+</html>
