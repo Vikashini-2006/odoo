@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+
+# Build & Output
+frontend/dist/
+frontend/build/
+.vite/
+
+# Environment & Logs
+.env
+*.log
+.DS_Store
+Thumbs.db
